@@ -1,8 +1,11 @@
 import { useState } from "react";
 import { createQuizlet } from "../utils";
 import { v4 as uuidv4 } from "uuid";
+import { useRecoilValue } from "recoil";
+import { authState } from "../recoil";
 
 const CreateQuiz = () => {
+  const user = useRecoilValue(authState);
   const [quiz, setQuiz] = useState({
     qid: uuidv4(),
     title: "",
@@ -18,6 +21,7 @@ const CreateQuiz = () => {
         options: [],
       },
     ],
+    createdBy: "",
   });
 
   console.log("FORM DATA: ", quiz);
@@ -77,7 +81,7 @@ const CreateQuiz = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createQuizlet(quiz);
+    createQuizlet({ ...quiz, createdBy: "gZGtIJFkg0SOhfI99PBXo3VkFeA3" });
     setQuiz({
       qid: uuidv4(),
       title: "",

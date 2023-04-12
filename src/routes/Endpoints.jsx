@@ -6,7 +6,7 @@ const Endpoints = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="/create-quiz" element={<CreateQuiz />} />
-      <Route path="/attempt-quiz" element={<AvailableQuiz />} />
+      <Route path="/attempt" element={<AvailableQuiz />} />
     </Routes>
   );
 };
