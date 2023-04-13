@@ -19,9 +19,11 @@ const Home = () => {
               Create a quiz
             </button>
           </Link>
-          <button className="border-2 border-red-400 px-2 py-1 rounded">
-            Attempt a quiz
-          </button>
+          <Link to="/attempt">
+            <button className="border-2 border-red-400 px-2 py-1 rounded">
+              Attempt a quiz
+            </button>
+          </Link>
         </div>
       </section>
     </div>

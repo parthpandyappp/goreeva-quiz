@@ -1,11 +1,11 @@
 import { useEffect, useState } from "react";
 import { QuizCard } from "../components";
 import { getQuizData } from "../utils";
-import { useRecoilValue } from "recoil";
-import { authState } from "../recoil";
+import { useRecoilState, useRecoilValue } from "recoil";
+import { authState, quizState } from "../recoil";
 
 const AvailableQuiz = () => {
-  const [quizData, setQuizData] = useState([]);
+  const [quizData, setQuizData] = useRecoilState(quizState);
   const user = useRecoilValue(authState);
 
   useEffect(() => {
@@ -19,7 +19,12 @@ const AvailableQuiz = () => {
       <section className="flex flex-wrap justify-center gap-2 mt-4 w-3/4 mx-auto">
         {quizData?.map((d) => {
           return (
-            <QuizCard key={d.id} title={d.title} content={d.description} />
+            <QuizCard
+              key={d.id}
+              title={d.title}
+              content={d.description}
+              qdata={d}
+            />
           );
         })}
       </section>

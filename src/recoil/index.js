@@ -1,1 +1,1 @@
-export { authState, quizState } from "./states"
+export { authState, quizState, scoreState } from "./states"

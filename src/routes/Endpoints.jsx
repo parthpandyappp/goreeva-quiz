@@ -1,5 +1,5 @@
 import { Route, Routes } from "react-router-dom";
-import { Home, CreateQuiz, AvailableQuiz } from "../pages";
+import { Home, CreateQuiz, AvailableQuiz, Quest } from "../pages";
 
 const Endpoints = () => {
   return (
@@ -7,6 +7,7 @@ const Endpoints = () => {
       <Route path="/" element={<Home />} />
       <Route path="/create-quiz" element={<CreateQuiz />} />
       <Route path="/attempt" element={<AvailableQuiz />} />
+      <Route path="/quest/:qid" element={<Quest />} />
     </Routes>
   );
 };

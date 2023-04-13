@@ -81,7 +81,7 @@ const CreateQuiz = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    createQuizlet({ ...quiz, createdBy: "gZGtIJFkg0SOhfI99PBXo3VkFeA3" });
+    createQuizlet({ ...quiz, createdBy: user?.authUser?.uid });
     setQuiz({
       qid: uuidv4(),
       title: "",
