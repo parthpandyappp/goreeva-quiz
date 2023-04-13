@@ -1,6 +1,11 @@
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { signInWithGoogle, saveUserAndValidate, handleLogout } from "../utils";
+import {
+  signInWithGoogle,
+  saveUserAndValidate,
+  handleLogout,
+  notifyUserLogout,
+} from "../utils";
 import { useRecoilState } from "recoil";
 import { authState } from "../recoil";
 
@@ -19,8 +24,6 @@ const Nav = () => {
     }
   }, [bufferData]);
 
-  console.log("USER: ", authUser);
-
   return (
     <nav className="flex-none px-2 py-2 border-2">
       <section className="flex justify-between">
@@ -35,7 +38,10 @@ const Nav = () => {
               <p>Hi, {authUser?.authUser?.name.split(" ")[0]}👋</p>
               <button
                 className="bg-red-400 rounded px-4 py-1 text-white"
-                onClick={() => handleLogout(setAuthUser)}
+                onClick={() => {
+                  handleLogout(setAuthUser);
+                  notifyUserLogout();
+                }}
               >
                 Logout
               </button>

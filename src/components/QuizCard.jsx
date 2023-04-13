@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import { notifyQuizStart } from "../utils";
 
 const QuizCard = ({ title, content, qdata }) => {
   return (
@@ -8,7 +9,10 @@ const QuizCard = ({ title, content, qdata }) => {
       </h2>
       <p className="font-base text-sm h-20 mt-2">{content}</p>
       <Link to={`/quest/${qdata.qid}`}>
-        <button className="px-6 py-1 bg-red-400 rounded text-white font-bold">
+        <button
+          className="px-6 py-1 bg-red-400 rounded text-white font-bold"
+          onClick={() => notifyQuizStart()}
+        >
           Play
         </button>
       </Link>

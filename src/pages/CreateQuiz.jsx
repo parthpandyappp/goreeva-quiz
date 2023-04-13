@@ -1,11 +1,13 @@
 import { useState } from "react";
-import { createQuizlet } from "../utils";
+import { createQuizlet, notifyQuizCreation } from "../utils";
 import { v4 as uuidv4 } from "uuid";
 import { useRecoilValue } from "recoil";
 import { authState } from "../recoil";
+import { useNavigate } from "react-router-dom";
 
 const CreateQuiz = () => {
   const user = useRecoilValue(authState);
+  const navigate = useNavigate();
   const [quiz, setQuiz] = useState({
     qid: uuidv4(),
     title: "",
@@ -82,6 +84,8 @@ const CreateQuiz = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     createQuizlet({ ...quiz, createdBy: user?.authUser?.uid });
+    notifyQuizCreation();
+    navigate("/");
     setQuiz({
       qid: uuidv4(),
       title: "",
@@ -234,7 +238,7 @@ const CreateQuiz = () => {
           <div className="flex gap-1">
             <button
               type="button"
-              className="border border-red-400 bg-none text-center text-white w-1/2 text-red-400 mx-auto mt-4 rounded py-1 px-4"
+              className="border border-red-400 bg-none text-center text-red-400 w-1/2 text-red-400 mx-auto mt-4 rounded py-1 px-4"
               onClick={() => {
                 setQuiz({
                   ...quiz,

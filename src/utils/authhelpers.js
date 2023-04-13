@@ -9,6 +9,7 @@ import {
     setDoc,
     collection,
 } from "firebase/firestore";
+import { notifyUserLogin } from "./toasthelpers";
 
 const auth = getAuth(app);
 const db = getFirestore(app);
@@ -69,8 +70,10 @@ const saveUserAndValidate = async (bufferData) => {
             pic: bufferData.photoURL,
         };
         await setDoc(doc(userRef, bufferData.uid), userData);
+        notifyUserLogin();
         return userData;
     } else {
+        notifyUserLogin();
         return await getUser(bufferData.uid);
     }
 };

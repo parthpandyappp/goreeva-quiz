@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import { useRecoilState, useRecoilValue } from "recoil";
 import { quizState, scoreState } from "../recoil";
-import { SubmitModal } from "../components";
+import { CountDownTimer, SubmitModal } from "../components";
+import { notifyPlayAgain, notifyQuitQuiz, notifyQuizSubmit } from "../utils";
 
 const Quest = () => {
   const { qid } = useParams();
@@ -11,10 +12,10 @@ const Quest = () => {
   const [score, setScore] = useRecoilState(scoreState);
   const [showModal, setShowModal] = useState(false);
   const [selectedOption, setSelectedOption] = useState("");
-  const { title, questions, ded_pts, add_pts } = quizData.find(
+  const { title, questions, ded_pts, add_pts, time } = quizData.find(
     (q) => q.qid === qid
   );
-  console.log("QUIZ DATA: ", quizData);
+  const [timer, setTimer] = useState(time);
 
   const [index, setIndex] = useState(0);
   const [activeOptIndex, setActiveOptIndex] = useState(null);
@@ -52,8 +53,10 @@ const Quest = () => {
     setIndex(0);
     setScore(0);
     setShowModal(false);
+    setTimer(time);
     setSelectedOption("");
     setActiveOptIndex(null);
+    notifyPlayAgain();
   };
 
   return (
@@ -64,7 +67,10 @@ const Quest = () => {
           <p>
             Question: {index + 1}/{questions.length}
           </p>
-          <p>Score: {score}</p>
+          <div className="flex justify-between w-28">
+            <p>Score: {score}</p>
+            <CountDownTimer time={timer} toggleModal={setShowModal} />
+          </div>
         </div>
         <div className="flex flex-col gap-1 mt-2">
           <p className="text-lg font-semibold text-center">{quest.question}</p>
@@ -92,6 +98,7 @@ const Quest = () => {
               className="py-1 px-6 border border-red-400 text-red-400 rounded"
               onClick={() => {
                 setScore(0);
+                notifyQuitQuiz();
                 navigate("/");
               }}
             >
@@ -100,7 +107,10 @@ const Quest = () => {
             {index === 4 ? (
               <button
                 className="py-1 px-6 border bg-red-400 text-white rounded"
-                onClick={() => setShowModal(true)}
+                onClick={() => {
+                  setShowModal(true);
+                  notifyQuizSubmit();
+                }}
               >
                 Submit
               </button>
