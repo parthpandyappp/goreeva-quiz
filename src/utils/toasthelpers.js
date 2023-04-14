@@ -98,6 +98,18 @@ const notifyPlayAgain = () =>
         }
     );
 
+const notifyUserToLogin = () =>
+    toast(
+        (t) => (
+            <span>
+                <b>Login to create/attempt quiz</b>
+            </span>
+        ),
+        {
+            style: toastStyle,
+        }
+    );
+
 const notifyError = () =>
     toast(
         (t) => (
@@ -118,5 +130,6 @@ export {
     notifyQuizStart,
     notifyQuizSubmit,
     notifyQuitQuiz,
-    notifyPlayAgain
+    notifyPlayAgain,
+    notifyUserToLogin
 };

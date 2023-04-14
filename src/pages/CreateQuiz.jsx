@@ -124,7 +124,7 @@ const CreateQuiz = () => {
                 type="text"
                 name="title"
                 value={quiz.title}
-                className="border w-full rounded-sm py-1 px-1"
+                className="border w-full rounded py-1 px-2 bg-slate-50"
                 onChange={(e) => setQuiz({ ...quiz, title: e.target.value })}
               />
             </section>
@@ -137,7 +137,7 @@ const CreateQuiz = () => {
                 type="number"
                 name="time"
                 value={quiz.time}
-                className="border w-full rounded-sm py-1 px-1"
+                className="border w-full rounded py-1 px-2 bg-slate-50"
                 onChange={(e) => setQuiz({ ...quiz, time: e.target.value })}
               />
             </section>
@@ -152,7 +152,7 @@ const CreateQuiz = () => {
                 type="number"
                 name="add_pts"
                 value={quiz.add_pts}
-                className="border w-full rounded-sm py-1 px-1"
+                className="border w-full rounded py-1 px-2 bg-slate-50"
                 onChange={(e) => setQuiz({ ...quiz, add_pts: e.target.value })}
               />
             </section>
@@ -165,7 +165,7 @@ const CreateQuiz = () => {
                 type="number"
                 name="ded_pts"
                 value={quiz.ded_pts}
-                className="border w-full rounded-sm py-1 px-1"
+                className="border w-full rounded py-1 px-2 bg-slate-50"
                 onChange={(e) => setQuiz({ ...quiz, ded_pts: e.target.value })}
               />
             </section>
@@ -179,7 +179,7 @@ const CreateQuiz = () => {
                 placeholder="This quiz will present you with famous quotes from literature and ask you to identify the author and the work from which the quote is taken."
                 name="description"
                 value={quiz.description}
-                className="border w-full rounded-sm h-3/4 px-1 py-1"
+                className="border w-full rounded h-3/4 px-2 py-1 bg-slate-50"
                 onChange={(e) =>
                   setQuiz({ ...quiz, description: e.target.value })
                 }
@@ -197,7 +197,7 @@ const CreateQuiz = () => {
                     type="text"
                     name={`ques-${q.id}`}
                     placeholder={`Question ${q.id} goes here`}
-                    className="border w-full rounded-sm py-1 px-1"
+                    className="border w-full rounded py-1 px-2 bg-slate-50"
                     value={
                       quiz.questions.find((que) => que.id === q.id).question
                     }
@@ -205,12 +205,13 @@ const CreateQuiz = () => {
                   />
                   <div className="mt-2">
                     <p className="font-medium">Options</p>
-                    <div className="flex flex-wrap gap-1 justify-center">
+                    <div className="flex flex-wrap gap-2 justify-center">
                       {Array.from({ length: 4 }).map((_, index) => {
                         return (
                           <input
                             type="text"
-                            className="border w-1/3 rounded-sm py-1 px-1"
+                            className="border w-1/3 rounded py-1 px-2 bg-slate-50"
+                            placeholder={`Option ${index + 1}`}
                             value={
                               quiz.questions.find((que) => que.id === q.id)
                                 .options[index]
@@ -225,7 +226,8 @@ const CreateQuiz = () => {
                     <p className="font-medium">Correct answer</p>
                     <input
                       type="text"
-                      className="border w-full rounded-sm py-1 px-1  mt-1"
+                      className="border w-full rounded py-1 px-2 mt-1 bg-slate-50"
+                      placeholder="write the correct answer here"
                       onChange={(e) => handleAnswerChange(e, q.id)}
                     />
                   </div>
@@ -238,7 +240,7 @@ const CreateQuiz = () => {
           <div className="flex gap-1">
             <button
               type="button"
-              className="border border-red-400 bg-none text-center text-red-400 w-1/2 text-red-400 mx-auto mt-4 rounded py-1 px-4"
+              className="border border-red-400 bg-none text-center text-red-400 w-1/2 text-red-400 mx-auto mt-4 rounded py-1 px-4 bg-slate-50"
               onClick={() => {
                 setQuiz({
                   ...quiz,

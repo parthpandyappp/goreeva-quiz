@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
 import {
   signInWithGoogle,
@@ -12,6 +12,8 @@ import { authState } from "../recoil";
 const Nav = () => {
   const [bufferData, setBufferData] = useState(null);
   const [authUser, setAuthUser] = useRecoilState(authState);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     if (bufferData !== null) {
@@ -40,6 +42,7 @@ const Nav = () => {
                 className="bg-red-400 rounded px-4 py-1 text-white"
                 onClick={() => {
                   handleLogout(setAuthUser);
+                  navigate("/");
                   notifyUserLogout();
                 }}
               >

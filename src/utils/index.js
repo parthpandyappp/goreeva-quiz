@@ -9,5 +9,6 @@ export {
     notifyQuizStart,
     notifyQuizSubmit,
     notifyQuitQuiz,
-    notifyPlayAgain
+    notifyPlayAgain,
+    notifyUserToLogin
 } from "./toasthelpers"

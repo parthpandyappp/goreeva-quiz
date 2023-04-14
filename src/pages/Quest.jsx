@@ -4,6 +4,7 @@ import { useRecoilState, useRecoilValue } from "recoil";
 import { quizState, scoreState } from "../recoil";
 import { CountDownTimer, SubmitModal } from "../components";
 import { notifyPlayAgain, notifyQuitQuiz, notifyQuizSubmit } from "../utils";
+import { motion } from "framer-motion";
 
 const Quest = () => {
   const { qid } = useParams();
@@ -73,7 +74,14 @@ const Quest = () => {
           </div>
         </div>
         <div className="flex flex-col gap-1 mt-2">
-          <p className="text-lg font-semibold text-center">{quest.question}</p>
+          <motion.p
+            initial={{ scale: 0.1 }}
+            animate={{ scale: 1 }}
+            transition={{ duration: 0.4 }}
+            className="text-lg font-semibold text-center"
+          >
+            {quest.question}
+          </motion.p>
           <div className="flex flex-col w-2/3 mx-auto gap-1">
             {quest.options.map((opt, index) => {
               return (
@@ -109,6 +117,7 @@ const Quest = () => {
                 className="py-1 px-6 border bg-red-400 text-white rounded"
                 onClick={() => {
                   setShowModal(true);
+                  responseValidation(selectedOption);
                   notifyQuizSubmit();
                 }}
               >
