@@ -1,3 +1,5 @@
+[![Netlify Status](https://api.netlify.com/api/v1/badges/5868b422-9fb7-4175-9888-68ae17bf701c/deploy-status)](https://app.netlify.com/sites/goreeeva-quiz/deploys)
+
 # Goreeva Quiz
 One stop platform to build questionnare and distribute among your network.
 
