@@ -6,9 +6,10 @@ One stop platform to build questionnare and distribute among your network.
 
 ### Tech stack
 * ReactJs
-* TailwindCss
-* Recoil (an experiment w/new state management library)
 * Firebase
+* TailwindCss
+* Framer motion for animation
+* Recoil (an experiment w/new state management library)
 
 ### Features
 * Create quiz with time limit, score customizations.
